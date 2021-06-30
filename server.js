@@ -24,12 +24,9 @@ app.use(express.json());
 app.use(cors());
 
 
-// app.get('/',(req,res) => {
-// 	res.json(database);
-// 	console.log("eihab", bcrypt.hashSync("meat"));
-// 	console.log("andrei", bcrypt.hashSync("apple"));
-// 	console.log("shakira", bcrypt.hashSync("cake"));
-// })
+app.get('/',(req,res) => {
+	res.json("it's working ...");
+})
 // To apply "Dependencies Injection" to signin.userSignin andmake the code much cleaner, apply the following:
 // * Export the signin file => const signin = require('../controllers/signin')
 // ** Delete below rout and paste this => app.post('/signin', (req,res)=> {signin.userSignin(req, res, db, bcrypt)})
