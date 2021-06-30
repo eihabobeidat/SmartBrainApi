@@ -7,10 +7,8 @@ const knex = require('knex');
 const db = knex ({
   client: 'pg',
   connection: {
-    host : 'postgresql-graceful-73105',
-    user : 'mvoegehezvxwdf',
-    password : '',
-    database : 'smartbrain-application9::DATABASE'
+    host : process.env.DATABASE_URL,
+    ssl:true
   }
 });
 
