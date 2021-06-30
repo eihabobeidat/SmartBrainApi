@@ -7,10 +7,8 @@ const knex = require('knex');
 const db = knex ({
   client: 'pg',
   connection: {
-    host : '127.0.0.1',
-    user : 'Eihab',
-    password : '12345',
-    database : 'smart_brain' // eihab, please change me
+    connectionString : process.env.DATABASE_URL,
+    ssl:true
   }
 });
 
@@ -24,6 +22,9 @@ app.use(express.json());
 app.use(cors());
 
 
+app.get('/',(req,res) => {
+	res.json("it's working ...");
+})
 // app.get('/',(req,res) => {
 // 	res.json(database);
 // 	console.log("eihab", bcrypt.hashSync("meat"));
@@ -90,7 +91,7 @@ app.post('/register',(req,res) => {
 			// 	console.log(resp, 'wow database updated successfully');
 			//.catch(erro => console.log('oops inner promise error'))			
 		})
-		.catch(err => res.json({messege:'Failed to register: the Email is already used'}))
+		.catch(err => res.json({messege:'Failed to register: Email is already used'}))
 		.finally(() => {
 			// if both promises executed without errors and push success, responsing with the registered user
 			if (dataPushCheck){
@@ -136,7 +137,8 @@ app.put('/image',(req,res) => {
 })
 
 
-app.listen(3000, ()=>{
+
+app.listen(process.env.PORT || 3000, ()=>{
 	console.log('express server is working');
 })
 
