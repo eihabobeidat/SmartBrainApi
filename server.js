@@ -7,7 +7,7 @@ const knex = require('knex');
 const db = knex ({
   client: 'pg',
   connection: {
-    host : process.env.DATABASE_URL,
+    connectionString : process.env.DATABASE_URL,
     ssl:true
   }
 });
@@ -85,7 +85,7 @@ app.post('/register',(req,res) => {
 			// 	console.log(resp, 'wow database updated successfully');
 			//.catch(erro => console.log('oops inner promise error'))			
 		})
-		.catch(err => res.json({messege:'Failed to register: the Email is already used'}))
+		.catch(err => res.json({messege:'Failed to register: Email is already used'}))
 		.finally(() => {
 			// if both promises executed without errors and push success, responsing with the registered user
 			if (dataPushCheck){
